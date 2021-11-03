@@ -1,13 +1,12 @@
 # react에서 typescript 사용하는 튜토리얼
 <br>
-```javascript
+``` javascript
 // 타입스크립트로 CRA
 npx create-react-app [프로젝트 명] --template typescript
 ```
 <br>
 
-## React.FC 
-<br>
+## React.FC
 
 - 장점
 props에서 children "지정없이", children 사용 가능
@@ -27,7 +26,6 @@ Greetings.defaultProps = {
 <br>
 
 ## React.FC 없이, 작성하기
-<br>
 
 - 장점
 defaultProps 사용 가능
