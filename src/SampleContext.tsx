@@ -32,9 +32,16 @@ function reducer(state: State, action: Action): State {
 
 type SampleDispatch = Dispatch<Action>;
 
-const SampleStateContext = createContext<State | null>(null);
+// const SampleStateContext = createContext<State | null>(null);
+const SampleStateContext = createContext<State>({
+  count: 0,
+  text: '',
+  color: 'orange',
+  isGood: false,
+});
 // React에서 import된 "Dispatch" 사용
-const SampleDispatchContext = createContext<SampleDispatch | null>(null);
+// const SampleDispatchContext = createContext<SampleDispatch | null>(null);
+const SampleDispatchContext = createContext<SampleDispatch>(() => null);
 // 한 번에 제너릭을 사용해도 문제 X
 // const SampleDispatchContext = createContext<Dispatch<Action> | null>(null);
 
@@ -61,17 +68,17 @@ export function SampleProvider({ children }: SampleProviderProps) {
 
 // useContext를 사용하는 대신 사용할 커스텀 훅 생성
 export function useSampleState() {
-  const state = useContext(SampleStateContext);
-  if (!state) {
-    throw new Error('Cannot find SampleProvider: State');
-  }
-  return state;
+  // const state = useContext(SampleStateContext);
+  // if (!state) {
+  //   throw new Error('Cannot find SampleProvider: State');
+  // }
+  return useContext(SampleStateContext);
 }
 
 export function useSampleDispatch() {
-  const dispatch = useContext(SampleDispatchContext);
-  if (!dispatch) {
-    throw new Error('Cannot find SampleProvider: dispatch');
-  }
-  return dispatch;
+  // const dispatch = useContext(SampleDispatchContext);
+  // if (!dispatch) {
+  //   throw new Error('Cannot find SampleProvider: dispatch');
+  // }
+  return useContext(SampleDispatchContext);
 }
