@@ -1,45 +1,72 @@
 # react에서 typescript 사용하는 튜토리얼
+
 <br>
-``` javascript
+
+```javascript
 // 타입스크립트로 CRA
 npx create-react-app [프로젝트 명] --template typescript
 ```
+
 <br>
 
 ## React.FC
 
 - 장점
-props에서 children "지정없이", children 사용 가능
-``` javascript
+  props에서 children "지정없이", children 사용 가능
+
+```javascript
 // 예시
-const Greetings : React.FC<GreetingsProps> = ({ name, mark = '!', optional, onClick, children }) => {  /* ...code */ }
+const Greetings: React.FC<GreetingsProps> = ({
+  name,
+  mark = '!',
+  optional,
+  onClick,
+  children,
+}) => {
+  /* ...code */
+};
 ```
+
 - 단점
-defaultProps 작동 안 함 ( { props = '!' }와 같은 할당으로 사용 가능 )
-``` javascript
+  defaultProps 작동 안 함 ( { props = '!' }와 같은 할당으로 사용 가능 )
+
+```javascript
 // defulatProps 작성 시, 오류!
 Greetings.defaultProps = {
   mark: '!',
-  optional: '[옵션 없음]'
+  optional: '[옵션 없음]',
 }; // ( 작동 X... 위 예시에서 [mark = '!'] 작동 O )
 ```
+
 <br>
 
 ## React.FC 없이, 작성하기
 
 - 장점
-defaultProps 사용 가능
+  defaultProps 사용 가능
 - 단점
-children 사용 시, 따로 타입 내에 선언 필요
+  children 사용 시, 따로 타입 내에 선언 필요
+
 ```javascript
-const Greetings = ({ name, mark, optional, onClick }: GreetingsProps) => { /* ...code */ }
+const Greetings = ({ name, mark, optional, onClick }: GreetingsProps) => {
+  /* ...code */
+};
 // 또는
-function Greetings({ name, mark, optional, onClick }: GreetingsProps) { /* ...code */ }
+function Greetings({ name, mark, optional, onClick }: GreetingsProps) {
+  /* ...code */
+}
 ```
-```javascript 
+
+```javascript
 type GreetingsProps = {
     // ...props
     children?: React.ReactNode
 };
 function Greetings({ children }): GreetingsProps) { /* use children [OK!] */ }
 ```
+
+<br>
+
+### 클래스 컴포넌트에서 Context 다루기 (이 프로젝트에서는 다루지 않음)
+
+궁금하다면, <a href='http://bit.ly/tsrcc'>클래스로 Context 다루기!</a> 클릭!
